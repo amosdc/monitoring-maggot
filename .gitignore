@@ -1,0 +1,10 @@
+# Node.js
+node_modules/
+.env
+
+# Database
+database.json
+
+# System
+.DS_Store
+Thumbs.db
