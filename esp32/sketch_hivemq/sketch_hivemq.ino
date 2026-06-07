@@ -10,10 +10,10 @@
 WiFiMulti wifiMulti;
 
 // 1. MQTT (HiveMQ Cloud)
-const char* mqtt_server = "be7faf1c29994f1abd518d25486fdd7f.s1.eu.hivemq.cloud";
-const int mqtt_port = 8883;
-const char* mqtt_user = "Kelompok1";
-const char* mqtt_password = "Kelompok1";
+const char* mqtt_server = "";
+const int mqtt_port = ;
+const char* mqtt_user = "";
+const char* mqtt_password = "";
 const char* mqtt_topic = "maggot/sensor";
 const char* device_id = "ESP32-MF-001";
 
@@ -38,7 +38,7 @@ void setup_wifi() {
 
   // Tambahkan daftar Wi-Fi (Bisa lebih dari satu!)
   // ESP32 otomatis akan memilih sinyal yang paling kuat atau yang tersedia
-  wifiMulti.addAP("ahmad", "ahmadfaris");
+  wifiMulti.addAP("", "");
   // wifiMulti.addAP("HOTSPOT_GURU", "passwordguru123");
   // wifiMulti.addAP("WIFI_CADANGAN", "passwordcadangan");
 
