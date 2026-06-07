@@ -1,83 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maggot Farm Monitor</title>
-  <meta name="description" content="Real-time Maggot Farm Monitoring Dashboard">
-  
-  <!-- Google Fonts: Outfit for a modern look -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  
-  <!-- Styles -->
-  <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-
-  <!-- Background Animated Elements -->
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-
-  <div class="dashboard-container">
-    <header class="dashboard-header">
-      <div class="header-content">
-        <h1>Maggot Farm Monitor</h1>
-        <p>Real-time Environment Dashboard</p>
-      </div>
-      <div class="connection-status">
-        <div class="status-indicator" id="status-indicator"></div>
-        <span id="status-text">Connecting...</span>
-      </div>
-    </header>
-
-    <main class="dashboard-grid">
-      <!-- Temperature Card -->
-      <div class="glass-card metric-card">
-        <div class="card-icon temp-icon">🌡️</div>
-        <div class="card-content">
-          <h3>Temperature</h3>
-          <div class="value-container">
-            <span class="value" id="temp-value">--</span>
-            <span class="unit">°C</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Humidity Card -->
-      <div class="glass-card metric-card">
-        <div class="card-icon hum-icon">💧</div>
-        <div class="card-content">
-          <h3>Humidity</h3>
-          <div class="value-container">
-            <span class="value" id="hum-value">--</span>
-            <span class="unit">%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- System Status Card -->
-      <div class="glass-card status-card">
-        <div class="card-content">
-          <h3>Device ID: <span id="device-id">Unknown</span></h3>
-          <p class="last-updated">Last Updated: <span id="last-updated">--</span></p>
-          
-          <div class="alerts-container">
-            <h4>Active Alerts</h4>
-            <ul id="alerts-list">
-              <li class="no-alerts">No active alerts</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <!-- Socket.IO from CDN -->
-  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-  <!-- Logic -->
-  <script src="./script.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
