@@ -15,9 +15,9 @@ const History = () => {
   // Limit per halaman
   const LIMIT = 20;
 
-  const fetchHistory = async () => {
+  const fetchHistory = async (showLoading = false) => {
     try {
-      setLoading(true);
+      if (showLoading) setLoading(true);
       setError('');
       
       let url = `/history?page=${page}&limit=${LIMIT}`;
@@ -36,14 +36,21 @@ const History = () => {
       console.error('Error saat mengambil riwayat:', err);
       setError('Terjadi kesalahan koneksi ke server.');
     } finally {
-      setLoading(false);
+      if (showLoading) setLoading(false);
     }
   };
 
-  // Ambil data setiap kali halaman aktif atau filter tanggal berubah
+  // Ambil data awal & jalankan auto-refresh jika filter/halaman berubah
   useEffect(() => {
-    fetchHistory();
-  }, [page]);
+    fetchHistory(true);
+
+    // Auto-refresh log riwayat setiap 10 detik
+    const intervalId = setInterval(() => {
+      fetchHistory(false);
+    }, 10000);
+
+    return () => clearInterval(intervalId);
+  }, [page, startDate, endDate]);
 
   const handleApplyFilter = (e) => {
     e.preventDefault();

@@ -67,9 +67,6 @@ const SensorCard = ({ title, value, unit, minVal, maxVal, type }) => {
           <span className="sensor-value-number">{!isNaN(valNum) ? valNum.toFixed(1) : '--.-'}</span>
           <span className="sensor-unit">{unit}</span>
         </div>
-        <div className="card-icon-indicator">
-          {isTemp ? '🌡️' : '💧'}
-        </div>
       </div>
 
       <div className="sensor-meter-container">

@@ -41,7 +41,6 @@ const StatusPanel = ({ temp, hum, settings }) => {
       isActive: isIdeal,
       activeColor: '#00ff9d', // Hijau terang
       description: 'Suhu & kelembapan kandang berada pada rentang ideal untuk metabolisme maggot.',
-      icon: '✅',
       activeText: 'Sempurna',
       inactiveText: 'Menyimpang'
     },
@@ -51,7 +50,6 @@ const StatusPanel = ({ temp, hum, settings }) => {
       isActive: warningSuhu,
       activeColor: t > settings.tempMax ? '#ff4060' : '#4da6ff', // Merah jika panas, Biru jika dingin
       description: `Suhu saat ini (${t}°C) tidak normal. Batas ideal: ${settings.tempMin}-${settings.tempMax}°C.`,
-      icon: '⚠️',
       activeText: t > settings.tempMax ? 'Suhu Tinggi!' : 'Suhu Rendah!',
       inactiveText: 'Normal'
     },
@@ -61,7 +59,6 @@ const StatusPanel = ({ temp, hum, settings }) => {
       isActive: warningKelembapan,
       activeColor: h > settings.humMax ? '#ff8c42' : '#ffd32a', // Orange jika basah, Kuning jika kering
       description: `Kelembapan saat ini (${h}%) di luar batas normal. Batas ideal: ${settings.humMin}-${settings.humMax}%.`,
-      icon: '⚠️',
       activeText: h > settings.humMax ? 'Terlalu Basah!' : 'Terlalu Kering!',
       inactiveText: 'Normal'
     },
@@ -71,7 +68,6 @@ const StatusPanel = ({ temp, hum, settings }) => {
       isActive: risikoJamur,
       activeColor: '#ff8c42', // Orange
       description: 'Kelembapan tinggi (>80%) memicu pertumbuhan jamur merugikan pada media pakan.',
-      icon: '🍄',
       activeText: 'Tinggi',
       inactiveText: 'Rendah (Aman)'
     },
@@ -81,7 +77,6 @@ const StatusPanel = ({ temp, hum, settings }) => {
       isActive: risikoLarvaStres,
       activeColor: '#ff4060', // Red
       description: `Suhu ekstrem dapat menghentikan nafsu makan larva atau menyebabkan kematian.`,
-      icon: '🐛',
       activeText: 'Bahaya!',
       inactiveText: 'Aman'
     }
@@ -100,7 +95,6 @@ const StatusPanel = ({ temp, hum, settings }) => {
               style={cond.isActive ? { '--item-color': cond.activeColor } : {}}
             >
               <div className="item-header">
-                <span className="item-icon">{cond.icon}</span>
                 <span className="item-label">{cond.label}</span>
                 <span className="item-badge">
                   {cond.isActive ? cond.activeText : cond.inactiveText}

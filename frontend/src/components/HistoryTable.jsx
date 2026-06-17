@@ -83,7 +83,7 @@ const HistoryTable = ({ readings }) => {
                   </td>
                   <td>
                     <span className={`led-dot-badge ${reading.led ? 'led-on' : 'led-off'}`}>
-                      {reading.led ? '🔴 NYALA' : '⚫ MATI'}
+                      {reading.led ? 'NYALA' : 'MATI'}
                     </span>
                   </td>
                   <td>

@@ -14,37 +14,44 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Fetch data awal (Settings & History logs untuk chart)
-  useEffect(() => {
-    const fetchInitialData = async () => {
-      try {
-        setLoading(true);
-        // 1. Ambil thresholds
-        const settingsRes = await api.get('/settings');
-        if (settingsRes.data.success) {
-          setSettings(settingsRes.data.threshold);
-        }
-
-        // 2. Ambil data terakhir untuk inisialisasi card
-        const latestRes = await api.get('/latest');
-        if (latestRes.data.success) {
-          setLatestData(latestRes.data.data);
-        }
-
-        // 3. Ambil riwayat terbaru (20 data) untuk mengisi chart agar tidak kosong di awal
-        const historyRes = await api.get('/history?limit=20');
-        if (historyRes.data.success) {
-          setChartData(historyRes.data.data);
-        }
-      } catch (err) {
-        console.error('Gagal mengambil data dashboard:', err);
-        setError('Gagal memuat data dari server.');
-      } finally {
-        setLoading(false);
+  const fetchInitialData = async (showLoading = false) => {
+    try {
+      if (showLoading) setLoading(true);
+      // 1. Ambil thresholds
+      const settingsRes = await api.get('/settings');
+      if (settingsRes.data.success) {
+        setSettings(settingsRes.data.threshold);
       }
-    };
 
-    fetchInitialData();
+      // 2. Ambil data terakhir untuk inisialisasi card
+      const latestRes = await api.get('/latest');
+      if (latestRes.data.success) {
+        setLatestData(latestRes.data.data);
+      }
+
+      // 3. Ambil riwayat terbaru (20 data) untuk mengisi chart agar tidak kosong di awal
+      const historyRes = await api.get('/history?limit=20');
+      if (historyRes.data.success) {
+        setChartData(historyRes.data.data);
+      }
+    } catch (err) {
+      console.error('Gagal mengambil data dashboard:', err);
+      setError('Gagal memuat data dari server.');
+    } finally {
+      if (showLoading) setLoading(false);
+    }
+  };
+
+  // Fetch data awal & jalankan auto-refresh
+  useEffect(() => {
+    fetchInitialData(true);
+
+    // Auto-refresh data setiap 10 detik
+    const intervalId = setInterval(() => {
+      fetchInitialData(false);
+    }, 10000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   // Hubungkan ke socket untuk data realtime

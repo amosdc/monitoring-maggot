@@ -51,25 +51,25 @@ const Navbar = () => {
           to="/dashboard" 
           className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
         >
-          <span className="nav-icon">📊</span> Dashboard
+          Dashboard
         </NavLink>
         <NavLink 
           to="/history" 
           className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
         >
-          <span className="nav-icon">📜</span> History
+          History
         </NavLink>
         <NavLink 
           to="/analytics" 
           className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
         >
-          <span className="nav-icon">📈</span> Analytics
+          Analytics
         </NavLink>
         <NavLink 
           to="/settings" 
           className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
         >
-          <span className="nav-icon">⚙️</span> Settings
+          Settings
         </NavLink>
       </div>
 
@@ -80,7 +80,9 @@ const Navbar = () => {
         </div>
 
         <div className="user-profile">
-          <div className="avatar">👤</div>
+          <div className="avatar">
+            {user?.username ? user.username.charAt(0).toUpperCase() : 'A'}
+          </div>
           <div className="user-info">
             <span className="username">{user?.username || 'Admin'}</span>
             <span className="role">{user?.role || 'operator'}</span>
@@ -88,7 +90,7 @@ const Navbar = () => {
         </div>
 
         <button className="btn-logout" onClick={handleLogoutClick} title="Logout">
-          🚪 <span className="logout-text">Logout</span>
+          <span className="logout-text">Logout</span>
         </button>
       </div>
     </nav>

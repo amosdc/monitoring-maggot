@@ -29,29 +29,41 @@ const Settings = () => {
   const [settingsMessage, setSettingsMessage] = useState({ text: '', type: '' });
   const [passwordMessage, setPasswordMessage] = useState({ text: '', type: '' });
 
-  // Load Settings & Device info
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        setLoading(true);
-        const response = await api.get('/settings');
-        if (response.data.success) {
-          const { threshold, device } = response.data;
+  const fetchSettings = async (showLoading = false) => {
+    try {
+      if (showLoading) setLoading(true);
+      const response = await api.get('/settings');
+      if (response.data.success) {
+        const { threshold, device } = response.data;
+        // Hanya update input jika user sedang tidak fokus mengetik di input manapun
+        if (document.activeElement && document.activeElement.tagName !== 'INPUT') {
           setTempMin(threshold.tempMin);
           setTempMax(threshold.tempMax);
           setHumMin(threshold.humMin);
           setHumMax(threshold.humMax);
-          setDeviceInfo(device);
         }
-      } catch (error) {
-        console.error('Gagal mengambil settings:', error);
-        setSettingsMessage({ text: 'Gagal memuat konfigurasi dari database.', type: 'error' });
-      } finally {
-        setLoading(false);
+        setDeviceInfo(device);
       }
-    };
+    } catch (error) {
+      console.error('Gagal mengambil settings:', error);
+      if (showLoading) {
+        setSettingsMessage({ text: 'Gagal memuat konfigurasi dari database.', type: 'error' });
+      }
+    } finally {
+      if (showLoading) setLoading(false);
+    }
+  };
 
-    fetchSettings();
+  // Load Settings & Device info
+  useEffect(() => {
+    fetchSettings(true);
+
+    // Auto-refresh settings & info device setiap 30 detik
+    const intervalId = setInterval(() => {
+      fetchSettings(false);
+    }, 30000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   // Simpan Threshold Alert

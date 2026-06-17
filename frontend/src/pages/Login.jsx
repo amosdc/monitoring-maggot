@@ -36,14 +36,12 @@ const Login = () => {
     <div className="login-page-container">
       <div className="login-glass-card">
         <div className="login-header">
-          <div className="logo-pulse">🐛</div>
           <h1>Maggot Farm</h1>
           <p>IoT Monitoring & Analytics System</p>
         </div>
 
         {error && (
           <div className="login-error-alert">
-            <span className="error-icon">⚠️</span>
             <span className="error-message">{error}</span>
           </div>
         )}
@@ -51,34 +49,28 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label htmlFor="username">Username</label>
-            <div className="input-with-icon">
-              <span className="input-icon">👤</span>
-              <input
-                type="text"
-                id="username"
-                placeholder="Masukkan username admin"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                disabled={isSubmitting}
-                required
-              />
-            </div>
+            <input
+              type="text"
+              id="username"
+              placeholder="Masukkan username admin"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              disabled={isSubmitting}
+              required
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <div className="input-with-icon">
-              <span className="input-icon">🔒</span>
-              <input
-                type="password"
-                id="password"
-                placeholder="Masukkan password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={isSubmitting}
-                required
-              />
-            </div>
+            <input
+              type="password"
+              id="password"
+              placeholder="Masukkan password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={isSubmitting}
+              required
+            />
           </div>
 
           <button 

@@ -18,26 +18,33 @@ const Analytics = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const fetchAnalytics = async () => {
-      try {
-        setLoading(true);
-        setError('');
-        const response = await api.get('/analytics');
-        if (response.data.success) {
-          setStats(response.data.data);
-        } else {
-          setError('Gagal memuat data analitik.');
-        }
-      } catch (err) {
-        console.error('Error fetching analytics:', err);
-        setError('Koneksi ke server terputus.');
-      } finally {
-        setLoading(false);
+  const fetchAnalytics = async (showLoading = false) => {
+    try {
+      if (showLoading) setLoading(true);
+      setError('');
+      const response = await api.get('/analytics');
+      if (response.data.success) {
+        setStats(response.data.data);
+      } else {
+        setError('Gagal memuat data analitik.');
       }
-    };
+    } catch (err) {
+      console.error('Error fetching analytics:', err);
+      setError('Koneksi ke server terputus.');
+    } finally {
+      if (showLoading) setLoading(false);
+    }
+  };
 
-    fetchAnalytics();
+  useEffect(() => {
+    fetchAnalytics(true);
+
+    // Auto-refresh data analitik setiap 15 detik
+    const intervalId = setInterval(() => {
+      fetchAnalytics(false);
+    }, 15000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   if (loading) {
