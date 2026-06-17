@@ -66,21 +66,21 @@ const RealtimeChart = ({ data, type, label, color }) => {
             <CartesianGrid 
               strokeDasharray="3 3" 
               vertical={false} 
-              stroke="rgba(255, 255, 255, 0.05)" 
+              stroke="rgba(15, 23, 42, 0.06)" 
             />
 
             <XAxis 
               dataKey="ts" 
               tickFormatter={formatXAxis} 
-              stroke="rgba(255, 255, 255, 0.3)"
-              tick={{ fill: 'rgba(255, 255, 255, 0.5)', fontSize: 10, fontFamily: 'Share Tech Mono' }}
+              stroke="rgba(15, 23, 42, 0.15)"
+              tick={{ fill: '#64748b', fontSize: 10, fontFamily: 'Share Tech Mono' }}
               dy={10}
             />
 
             <YAxis 
               domain={yDomain} 
-              stroke="rgba(255, 255, 255, 0.3)"
-              tick={{ fill: 'rgba(255, 255, 255, 0.5)', fontSize: 10, fontFamily: 'Share Tech Mono' }}
+              stroke="rgba(15, 23, 42, 0.15)"
+              tick={{ fill: '#64748b', fontSize: 10, fontFamily: 'Share Tech Mono' }}
             />
 
             <Tooltip content={<CustomTooltip />} />

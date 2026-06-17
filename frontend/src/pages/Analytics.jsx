@@ -135,19 +135,19 @@ const Analytics = () => {
                       <stop offset="95%" stopColor="#00ff9d" stopOpacity={0.0}/>
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(15, 23, 42, 0.06)" vertical={false} />
                   <XAxis 
                     dataKey="date" 
-                    stroke="rgba(255,255,255,0.3)" 
-                    tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: 'Share Tech Mono' }}
+                    stroke="rgba(15, 23, 42, 0.15)" 
+                    tick={{ fill: '#64748b', fontSize: 10, fontFamily: 'Share Tech Mono' }}
                   />
                   <YAxis 
-                    stroke="rgba(255,255,255,0.3)" 
-                    tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: 'Share Tech Mono' }}
+                    stroke="rgba(15, 23, 42, 0.15)" 
+                    tick={{ fill: '#64748b', fontSize: 10, fontFamily: 'Share Tech Mono' }}
                   />
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#0d1628', borderColor: 'rgba(255,255,255,0.1)', borderRadius: '8px' }}
-                    labelStyle={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Share Tech Mono' }}
+                    contentStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.95)', borderColor: 'rgba(15, 23, 42, 0.1)', borderRadius: '8px', color: '#0f172a' }}
+                    labelStyle={{ color: '#334155', fontFamily: 'Share Tech Mono' }}
                   />
                   <Legend />
                   <Area 
@@ -183,19 +183,19 @@ const Analytics = () => {
             ) : (
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={alertData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(15, 23, 42, 0.06)" vertical={false} />
                   <XAxis 
                     dataKey="date" 
-                    stroke="rgba(255,255,255,0.3)" 
-                    tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: 'Share Tech Mono' }}
+                    stroke="rgba(15, 23, 42, 0.15)" 
+                    tick={{ fill: '#64748b', fontSize: 10, fontFamily: 'Share Tech Mono' }}
                   />
                   <YAxis 
-                    stroke="rgba(255,255,255,0.3)" 
-                    tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: 'Share Tech Mono' }}
+                    stroke="rgba(15, 23, 42, 0.15)" 
+                    tick={{ fill: '#64748b', fontSize: 10, fontFamily: 'Share Tech Mono' }}
                   />
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#0d1628', borderColor: 'rgba(255,255,255,0.1)', borderRadius: '8px' }}
-                    labelStyle={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Share Tech Mono' }}
+                    contentStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.95)', borderColor: 'rgba(15, 23, 42, 0.1)', borderRadius: '8px', color: '#0f172a' }}
+                    labelStyle={{ color: '#334155', fontFamily: 'Share Tech Mono' }}
                   />
                   <Legend />
                   {/* Tumpuk alert bar agar ringkas */}
