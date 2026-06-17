@@ -20,6 +20,8 @@ const Navbar = () => {
         return 'Predictive Analytics';
       case '/settings':
         return 'System & Threshold Settings';
+      case '/feeds':
+        return 'Pakan Maggot';
       default:
         return 'BSF Farm Monitor';
     }
@@ -70,6 +72,12 @@ const Navbar = () => {
           className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
         >
           Settings
+        </NavLink>
+        <NavLink 
+          to="/feeds" 
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+        >
+          Pakan Maggot
         </NavLink>
       </div>
 

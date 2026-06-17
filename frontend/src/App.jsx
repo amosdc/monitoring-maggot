@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard';
 import History from './pages/History';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
+import Feeds from './pages/Feeds';
 
 // Layout terproteksi untuk mengemas Navbar
 const AuthenticatedLayout = ({ children }) => {
@@ -75,6 +76,17 @@ const AppRoutes = () => {
           <PrivateRoute>
             <AuthenticatedLayout>
               <Settings />
+            </AuthenticatedLayout>
+          </PrivateRoute>
+        } 
+      />
+
+      <Route 
+        path="/feeds" 
+        element={
+          <PrivateRoute>
+            <AuthenticatedLayout>
+              <Feeds />
             </AuthenticatedLayout>
           </PrivateRoute>
         } 
