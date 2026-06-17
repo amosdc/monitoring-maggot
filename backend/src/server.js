@@ -8,6 +8,7 @@ const socketHandler = require('./socket');
 const mqttHandler = require('./mqtt');
 const User = require('./models/User');
 const Setting = require('./models/Setting');
+const Feed = require('./models/Feed');
 const bcrypt = require('bcryptjs');
 
 // Import Routes
@@ -54,6 +55,51 @@ async function seedDefaultData() {
         humMax: 80
       });
       console.log('[Seeder] Threshold settings default berhasil dibuat.');
+    }
+
+    // 3. Seed feeds default jika belum ada data pakan sama sekali
+    const feedExists = await Feed.findOne();
+    if (!feedExists) {
+      const dummyFeeds = [
+        {
+          feed_name: 'Sampah Sayuran Pasar',
+          weight: 4.5,
+          feed_date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), // 5 hari lalu
+          notes: 'Sisa kol, sawi, dan bayam dari pasar tradisional, kondisi dicacah halus'
+        },
+        {
+          feed_name: 'Ampas Tahu',
+          weight: 6.2,
+          feed_date: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000), // 4 hari lalu
+          notes: 'Kondisi segar, kelembaban tinggi, disebar di Box A1-A3'
+        },
+        {
+          feed_name: 'Sisa Makanan Katering',
+          weight: 3.8,
+          feed_date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 hari lalu
+          notes: 'Nasi dan lauk sisa katering perkantoran, dipilah dari minyak berlebih'
+        },
+        {
+          feed_name: 'Kulit Buah Campur',
+          weight: 5.0,
+          feed_date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 hari lalu
+          notes: 'Kulit pepaya, melon, dan pisang matang, difermentasi EM4 selama 24 jam'
+        },
+        {
+          feed_name: 'Dedak Padi & Ampas Kelapa',
+          weight: 2.5,
+          feed_date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1 hari lalu
+          notes: 'Pakan tambahan penstabil kelembaban di media tumbuh'
+        },
+        {
+          feed_name: 'Sampah Organik Rumah Tangga',
+          weight: 3.2,
+          feed_date: new Date(), // Hari ini
+          notes: 'Sisa kupasan sayur dan kulit kentang dari warga sekitar'
+        }
+      ];
+      await Feed.insertMany(dummyFeeds);
+      console.log('[Seeder] Data dummy pakan maggot berhasil dibuat.');
     }
   } catch (error) {
     console.error('[Seeder] Error saat menjalankan seeder:', error);
