@@ -68,18 +68,29 @@ const History = () => {
     }, 50);
   };
 
-  const handleExportCSV = () => {
-    if (readings.length === 0) {
-      alert('Tidak ada data untuk diekspor.');
-      return;
-    }
-
+  const handleExportCSV = async () => {
     try {
+      setError('');
+      
+      // Ambil seluruh data yang sesuai filter tanpa limitasi halaman (limit 1,000,000)
+      let url = `/history?page=1&limit=1000000`;
+      if (startDate) url += `&start=${startDate}`;
+      if (endDate) url += `&end=${endDate}`;
+
+      const response = await api.get(url);
+      
+      if (!response.data.success || response.data.data.length === 0) {
+        alert('Tidak ada data dalam filter ini untuk diekspor.');
+        return;
+      }
+
+      const allReadings = response.data.data;
+
       // 1. Definisikan header CSV
       const headers = ['Waktu', 'Tanggal', 'Suhu (C)', 'Kelembapan (%)', 'LED Status', 'Alerts'];
       
       // 2. Map data sensor ke baris CSV
-      const rows = readings.map(r => {
+      const rows = allReadings.map(r => {
         const d = new Date(r.ts);
         const timeStr = d.toLocaleTimeString('id-ID');
         const dateStr = d.toLocaleDateString('id-ID');
@@ -101,9 +112,9 @@ const History = () => {
       
       // 4. Buat file download blob
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
+      const downloadUrl = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.setAttribute('href', url);
+      link.setAttribute('href', downloadUrl);
       link.setAttribute('download', `maggot_monitoring_report_${new Date().toISOString().split('T')[0]}.csv`);
       link.style.visibility = 'hidden';
       document.body.appendChild(link);
@@ -111,7 +122,7 @@ const History = () => {
       document.body.removeChild(link);
     } catch (err) {
       console.error('Ekspor gagal:', err);
-      alert('Gagal mengekspor data ke CSV.');
+      alert('Gagal mengunduh data ekspor dari server.');
     }
   };
 

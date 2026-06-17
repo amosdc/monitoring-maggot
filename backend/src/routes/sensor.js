@@ -41,15 +41,13 @@ router.get('/history', authMiddleware, async (req, res) => {
     if (start || end) {
       query.ts = {};
       if (start) {
-        // Set ke awal hari (00:00:00)
-        const startDate = new Date(start);
-        startDate.setHours(0, 0, 0, 0);
+        // Set ke awal hari (00:00:00) di timezone lokal
+        const startDate = new Date(start + 'T00:00:00');
         query.ts.$gte = startDate;
       }
       if (end) {
-        // Set ke akhir hari (23:59:59)
-        const endDate = new Date(end);
-        endDate.setHours(23, 59, 59, 999);
+        // Set ke akhir hari (23:59:59.999) di timezone lokal
+        const endDate = new Date(end + 'T23:59:59.999');
         query.ts.$lte = endDate;
       }
     }
