@@ -164,7 +164,7 @@ const Settings = () => {
         <div className="settings-column">
           {/* Form Batas Threshold */}
           <div className="settings-glass-card">
-            <h3 className="card-section-title">🛡️ Threshold Batas Alert</h3>
+            <h3 className="card-section-title">Threshold Batas Alert</h3>
             <p className="card-section-subtitle">Tentukan batas suhu dan kelembapan agar memicu alarm pada Dashboard dan LED kandang.</p>
 
             {settingsMessage.text && (
@@ -230,7 +230,7 @@ const Settings = () => {
 
           {/* Info Device ESP32 */}
           <div className="settings-glass-card device-info-card">
-            <h3 className="card-section-title">📟 Informasi Hardware (ESP32 Client)</h3>
+            <h3 className="card-section-title">Informasi Hardware (ESP32 Client)</h3>
             <div className="device-metadata-grid">
               <div className="metadata-row">
                 <span className="meta-label">Device ID</span>
@@ -248,6 +248,14 @@ const Settings = () => {
                 <span className="meta-label">Sensor Terhubung</span>
                 <span className="meta-value mono-text">{deviceInfo.sensorType} (Pin 4)</span>
               </div>
+              <div className="metadata-row">
+                <span className="meta-label">Pin LED 1 (Alarm Visual)</span>
+                <span className="meta-value mono-text">Pin 5</span>
+              </div>
+              <div className="metadata-row">
+                <span className="meta-label">Pin LED 2 (Status Sistem)</span>
+                <span className="meta-value mono-text">Pin 2 (Built-in)</span>
+              </div>
             </div>
           </div>
         </div>
@@ -256,7 +264,7 @@ const Settings = () => {
         <div className="settings-column">
           {/* Form Ganti Password */}
           <div className="settings-glass-card">
-            <h3 className="card-section-title">🔑 Ganti Password Akun</h3>
+            <h3 className="card-section-title">Ganti Password Akun</h3>
             <p className="card-section-subtitle">Perbarui sandi login admin untuk menjaga privasi kendang budidaya.</p>
 
             {passwordMessage.text && (
