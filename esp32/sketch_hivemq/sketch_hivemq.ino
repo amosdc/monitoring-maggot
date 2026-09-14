@@ -10,12 +10,12 @@
 WiFiMulti wifiMulti;
 
 // 1. MQTT (HiveMQ Cloud) - KREDENSIAL ASAL (JANGAN DIUBAH!)
-const char* mqtt_server = "be7faf1c29994f1abd518d25486fdd7f.s1.eu.hivemq.cloud";
-const int mqtt_port = 8883;
-const char* mqtt_user = "Kelompok1";
-const char* mqtt_password = "Kelompok1";
-const char* mqtt_topic = "maggot/sensor";
-const char* device_id = "ESP32-MF-001";
+const char* mqtt_server = "";
+const int mqtt_port = ;
+const char* mqtt_user = "";
+const char* mqtt_password = "";
+const char* mqtt_topic = "";
+const char* device_id = "";
 
 // 2. Sensor DHT
 #define DHTPIN 4
